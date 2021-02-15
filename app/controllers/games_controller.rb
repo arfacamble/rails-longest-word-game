@@ -1,6 +1,7 @@
 require 'open-uri'
 require 'json'
 
+# this is a Controller
 class GamesController < ApplicationController
   def new
     alphabet = ('A'..'Z').to_a
@@ -11,13 +12,13 @@ class GamesController < ApplicationController
   def score
     @word = params[:word]
     @letters = params[:letters].split(' ')
-    if !word_valid_re_grid?(@word, @letters)
-      @result = "Look closer... you can't make #{@word.upcase} out of #{params[:letters]}"
-    elsif !word_valid_re_dictionary?(@word)
-      @result = "Perhaps you're not from round here, but we don't consider that sequence of letters to be pleasant"
-    else
-      @result = "You absolute spelling LEGEEEEEND #{@word} is so valid"
-    end
+    @result = if !word_valid_re_grid?(@word, @letters)
+                "Look closer... you can't make #{@word.upcase} out of #{params[:letters]}"
+              elsif !word_valid_re_dictionary?(@word)
+                "Perhaps you're not from round here, but we don't consider that sequence of letters to be pleasant"
+              else
+                "You absolute spelling LEGEEEEEND #{@word} is so valid"
+              end
   end
 
   private
