@@ -1,5 +1,7 @@
 <h1>Result</h1>
 
 <h4><%= @result %></h4>
-
+<% if @score %>
+<h5>You took <%= @time_taken.round %> seconds so you get a score of <bold><%= @score %></bold></h5>
+<% end %>
 <%= link_to "Play again", new_path %>

@@ -17,6 +17,8 @@ class GamesController < ApplicationController
               elsif !word_valid_re_dictionary?(@word)
                 "Perhaps you're not from round here, but we don't consider that sequence of letters to be pleasant"
               else
+                @time_taken = Time.now.to_f - params[:start_time].to_f
+                @score = (@word.length**2 - @time_taken).round
                 "You absolute spelling LEGEEEEEND #{@word} is so valid"
               end
   end
